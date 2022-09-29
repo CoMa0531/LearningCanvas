@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Canvas</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .canvas {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>requestAnimationFrame</h1>
+    <canvas class="canvas" width="500" height="300"></canvas>
+</body>
+    <script>
+        const canvas = document.querySelector('.canvas');
+        const context = canvas.getContext('2d');
+        let xPos = 10;
+        let count = 0;
+
+        function draw() {
+            if ( count % 30 === 0) {   //애니메이션 프레임은 초당 60회 반복임. 0.5초로 인터벌을 줄임.
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(xPos, 150, 20, 0, Math.PI *2, false);
+                context.fill();
+                xPos += 20;
+                // xPox = xPox + 5;
+            }
+
+            count++;
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+        
+    </script>
+</html>
